@@ -1,0 +1,11 @@
+#!/bin/sh
+ 
+case "${reason}" in
+	BOUND|INFORM|REBIND|REBOOT|RENEW|TIMEOUT|STATIC)
+		# send openvpn processes SIGUSR1 and make them reconnect
+		killall -USR1 openvpn
+		;;
+	PREINIT|EXPIRE|FAIL|IPV4LL|NAK|NOCARRIER|RELEASE|STOP)
+		# do nothing here...
+		;;
+esac
